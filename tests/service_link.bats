@@ -61,7 +61,6 @@ teardown() {
   echo "output: $output"
   echo "status: $status"
   url=$(dokku config:get my-app PRIMITIVE_URL)
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/ls/PASSWORD")"
   assert_contains "$url" "http://dokku-primitive-ls:8000/ls"
   assert_success
   dokku "$PLUGIN_COMMAND_PREFIX:unlink" ls my-app
@@ -94,8 +93,7 @@ teardown() {
   dokku config:set my-app PRIMITIVE_DATABASE_SCHEME=primitive2
   dokku "$PLUGIN_COMMAND_PREFIX:link" ls my-app
   url=$(dokku config:get my-app PRIMITIVE_URL)
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/ls/PASSWORD")"
-  assert_contains "$url" "primitive2http://dokku-primitive-ls:8000/ls"
+  assert_contains "$url" "primitive2://dokku-primitive-ls:8000/ls"
   assert_success
   dokku "$PLUGIN_COMMAND_PREFIX:unlink" ls my-app
 }
@@ -111,7 +109,6 @@ teardown() {
 @test "($PLUGIN_COMMAND_PREFIX:link) uses a specified config url when alias is specified" {
   dokku "$PLUGIN_COMMAND_PREFIX:link" ls my-app --alias "ALIAS"
   url=$(dokku config:get my-app ALIAS_URL)
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/ls/PASSWORD")"
   assert_contains "$url" "http://dokku-primitive-ls:8000/ls"
   assert_success
   dokku "$PLUGIN_COMMAND_PREFIX:unlink" ls my-app

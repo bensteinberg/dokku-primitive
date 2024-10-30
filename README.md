@@ -61,7 +61,6 @@ flags:
 - `-I|--image-version IMAGE_VERSION`: the image version to start the service with
 - `-m|--memory MEMORY`: container memory limit in megabytes (default: unlimited)
 - `-N|--initial-network INITIAL_NETWORK`: the initial network to attach the service to
-- `-p|--password PASSWORD`: override the user-level service password
 - `-P|--post-create-network NETWORKS`: a comma-separated list of networks to attach the service container to after service creation
 - `-r|--root-password PASSWORD`: override the root-level service password
 - `-S|--post-start-network NETWORKS`: a comma-separated list of networks to attach the service container to after service start

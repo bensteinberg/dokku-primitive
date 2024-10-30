@@ -39,7 +39,6 @@ teardown() {
 }
 
 @test "($PLUGIN_COMMAND_PREFIX:promote) changes PRIMITIVE_URL" {
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/l/PASSWORD")"
   dokku config:set my-app "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app
   url=$(dokku config:get my-app PRIMITIVE_URL)
@@ -47,14 +46,12 @@ teardown() {
 }
 
 @test "($PLUGIN_COMMAND_PREFIX:promote) creates new config url when needed" {
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/l/PASSWORD")"
   dokku config:set my-app "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app
   run dokku config my-app
   assert_contains "${lines[*]}" "DOKKU_PRIMITIVE_"
 }
 @test "($PLUGIN_COMMAND_PREFIX:promote) uses PRIMITIVE_DATABASE_SCHEME variable" {
-  password="$(sudo cat "$PLUGIN_DATA_ROOT/l/PASSWORD")"
   dokku config:set my-app "PRIMITIVE_DATABASE_SCHEME=primitive2" "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app
   url=$(dokku config:get my-app PRIMITIVE_URL)

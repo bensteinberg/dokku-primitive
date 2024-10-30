@@ -716,7 +716,6 @@ service_parse_args() {
       "--image") set -- "$@" "-i" ;;
       "--memory") set -- "$@" "-m" ;;
       "--no-restart") set -- "$@" "-n" ;;
-      "--password") set -- "$@" "-p" ;;
       "--post-create-network") set -- "$@" "-P" ;;
       "--post-start-network") set -- "$@" "-S" ;;
       "--querystring") set -- "$@" "-q" ;;
@@ -759,9 +758,6 @@ service_parse_args() {
       N)
         export SERVICE_INITIAL_NETWORK=$OPTARG
         ;;
-      p)
-        export SERVICE_PASSWORD=$OPTARG
-        ;;
       P)
         export SERVICE_POST_CREATE_NETWORK=$OPTARG
         ;;
@@ -786,16 +782,6 @@ service_parse_args() {
     esac
   done
   shift "$((OPTIND - 1))" # remove options from positional parameters
-}
-
-service_password() {
-  declare desc="fetch the password for a service"
-  declare SERVICE="$1"
-  local SERVICE_ROOT="$PLUGIN_DATA_ROOT/$SERVICE"
-  local PASSWORD_FILE="$SERVICE_ROOT/PASSWORD"
-  if [[ -f "$PASSWORD_FILE" ]]; then
-    cat "$PASSWORD_FILE"
-  fi
 }
 
 service_root_password() {
