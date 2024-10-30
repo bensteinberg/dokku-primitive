@@ -698,7 +698,6 @@ service_parse_args() {
       "--alias") set -- "$@" "-a" ;;
       "--config-options") set -- "$@" "-c" ;;
       "--custom-env") set -- "$@" "-C" ;;
-      "--database") set -- "$@" "-d" ;;
       "--image-version") set -- "$@" "-I" ;;
       "--initial-network") set -- "$@" "-N" ;;
       "--image") set -- "$@" "-i" ;;
@@ -727,9 +726,6 @@ service_parse_args() {
         ;;
       C)
         export SERVICE_CUSTOM_ENV=$OPTARG
-        ;;
-      d)
-        export SERVICE_DATABASE=$OPTARG
         ;;
       i)
         export PLUGIN_IMAGE=$OPTARG
