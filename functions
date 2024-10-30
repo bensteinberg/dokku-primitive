@@ -181,6 +181,8 @@ service_start() {
     "$DOCKER_BIN" container start "$PREVIOUS_ID" >/dev/null
     service_port_reconcile_status "$SERVICE"
     dokku_log_info2 "Container started"
+  elif service_image_exists "$SERVICE"; then
+    service_create_container "$SERVICE"
   else
     if ! service_image_exists "$SERVICE"; then
       [[ -f "$SERVICE_ROOT/IMAGE" ]] && PLUGIN_IMAGE="$(cat "$SERVICE_ROOT/IMAGE")"
