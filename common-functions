@@ -98,18 +98,6 @@ get_container_ip() {
   "$DOCKER_BIN" container inspect --format '{{ .NetworkSettings.IPAddress }}' "$CONTAINER_ID" 2>/dev/null
 }
 
-get_database_name() {
-  declare desc="retrieve a sanitized database name"
-  declare SERVICE="$1"
-  local SERVICE_ROOT="$PLUGIN_DATA_ROOT/$SERVICE"
-
-  if [[ ! -f "$SERVICE_ROOT/DATABASE_NAME" ]]; then
-    echo "$SERVICE" >"$SERVICE_ROOT/DATABASE_NAME"
-  fi
-
-  cat "$SERVICE_ROOT/DATABASE_NAME"
-}
-
 get_random_ports() {
   declare desc="retrieve N random ports"
   declare iterations="${1:-1}"
@@ -1006,14 +994,4 @@ verify_service_name() {
   fi
 
   return 0
-}
-
-write_database_name() {
-  declare desc="write a sanitized database name"
-  declare SERVICE="$1"
-  local SERVICE_ROOT="$PLUGIN_DATA_ROOT/$SERVICE"
-
-  # some datastores do not like special characters in database names
-  # so we need to normalize them out
-  echo "$SERVICE" | tr .- _ >"$SERVICE_ROOT/DATABASE_NAME"
 }
