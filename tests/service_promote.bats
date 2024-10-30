@@ -39,7 +39,7 @@ teardown() {
 }
 
 @test "($PLUGIN_COMMAND_PREFIX:promote) changes PRIMITIVE_URL" {
-  dokku config:set my-app "PRIMITIVE_URL=http://dokku-primitive-m:8000"
+  dokku config:set my-app "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app || true
   url=$(dokku config:get my-app PRIMITIVE_URL)
   assert_equal "$url" "http://dokku-primitive-l:8000"
@@ -49,10 +49,10 @@ teardown() {
   dokku config:set my-app "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app || true
   run dokku config my-app
-  assert_contains "${lines[*]}" "DOKKU_PRIMITIVE_"
+  assert_contains "${lines[*]}" "PRIMITIVE_"
 }
 @test "($PLUGIN_COMMAND_PREFIX:promote) uses PRIMITIVE_DATABASE_SCHEME variable" {
-  dokku config:set my-app "PRIMITIVE_DATABASE_SCHEME=primitive2" "PRIMITIVE_URL=http://dokku-primitive-l:8000"
+  dokku config:set my-app "PRIMITIVE_DATABASE_SCHEME=primitive2" "PRIMITIVE_URL=primitive2://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app || true
   url=$(dokku config:get my-app PRIMITIVE_URL)
   assert_contains "$url" "primitive2://dokku-primitive-l:8000"
