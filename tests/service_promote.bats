@@ -55,5 +55,5 @@ teardown() {
   dokku config:set my-app "PRIMITIVE_DATABASE_SCHEME=primitive2" "PRIMITIVE_URL=http://dokku-primitive-l:8000"
   dokku "$PLUGIN_COMMAND_PREFIX:promote" l my-app
   url=$(dokku config:get my-app PRIMITIVE_URL)
-  assert_contains "$url" "primitive2http://dokku-primitive-l:8000"
+  assert_contains "$url" "primitive2://dokku-primitive-l:8000"
 }
