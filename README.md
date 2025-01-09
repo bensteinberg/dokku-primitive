@@ -1,6 +1,6 @@
 # dokku primitive [![Build Status](https://img.shields.io/github/actions/workflow/status/dokku/dokku-primitive/ci.yml?branch=master&style=flat-square "Build Status")](https://github.com/dokku/dokku-primitive/actions/workflows/ci.yml?query=branch%3Amaster) [![IRC Network](https://img.shields.io/badge/irc-libera-blue.svg?style=flat-square "IRC Libera")](https://webchat.libera.chat/?channels=dokku)
 
-Official primitive plugin for dokku. Currently defaults to installing [registry.lil.tools/harvardlil/primitive 0.03](https://hub.docker.com/r/registry.lil.tools/harvardlil/).
+Official primitive plugin for dokku. Currently defaults to installing registry.lil.tools/harvardlil/primitive 0.04.
 
 ## Requirements
 
