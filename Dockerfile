@@ -1,1 +1,1 @@
-FROM registry.lil.tools/harvardlil/primitive:0.04
+FROM registry.lil.tools/harvardlil/primitive:0.05
